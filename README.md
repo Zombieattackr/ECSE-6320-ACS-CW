@@ -1,6 +1,6 @@
-# Three architecture profiling labs
+# ACS Class Wide Projects
 
-Each numbered folder is self-contained and includes its prediction, source, build and run commands, raw evidence, processed CSVs, plotting script, figures, AI-use note and a short report. I collected the included measurements on an Aorus 15P laptop with Intel Core i7-11800H and 32GB DDR4 running Ubuntu 26.04.1 LTS. Storage tests used an ext4 file on a Corsair MP400 NVMe SSD.
+Each numbered folder is self-contained and includes its prediction, source, build and run commands, raw evidence, processed CSVs, plotting script, figures, AI-use note and a short report. I collected the included measurements on a 2021 Aorus 15P KD laptop with Intel Core i7-11800H and 32GB DDR4 at 2667MHz running Ubuntu 26.04.1 LTS. Storage tests used an ext4 file on a Corsair MP400 NVMe SSD.
 
 SIMD advantage: [Report](01-simd/REPORT.md) , [Reproduce](01-simd/README.md) , Measured three kernels, three code-generation targets, six working-set sizes, two precisions, tail/alignment and stride
 Cache and memory: [Report](02-memory/REPORT.md) , [Reproduce](02-memory/README.md) , Measured dependent load latency, independent chains, cache footprint, worker throughput, page locality and loaded latency
