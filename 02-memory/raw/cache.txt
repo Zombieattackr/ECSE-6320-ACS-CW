@@ -1,0 +1,4 @@
+level 1 type 1 bytes 49152 line 64
+level 1 type 2 bytes 32768 line 64
+level 2 type 3 bytes 1310720 line 64
+level 3 type 3 bytes 25165824 line 64

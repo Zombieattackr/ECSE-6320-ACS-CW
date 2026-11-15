@@ -1,0 +1,85 @@
+scalar_float multiply
+    1126:	f3 0f 59 04 01       	mulss  xmm0,DWORD PTR [rcx+rax*1]
+    1166:	f3 0f 59 04 81       	mulss  xmm0,DWORD PTR [rcx+rax*4]
+scalar_float axpy
+    11ca:	f3 0f 59 c1          	mulss  xmm0,xmm1
+    11ce:	f3 0f 58 04 01       	addss  xmm0,DWORD PTR [rcx+rax*1]
+    1206:	f3 0f 59 c1          	mulss  xmm0,xmm1
+    120a:	f3 0f 58 04 81       	addss  xmm0,DWORD PTR [rcx+rax*4]
+scalar_float stencil
+    1283:	f3 0f 59 c3          	mulss  xmm0,xmm3
+    128e:	f3 0f 59 e5          	mulss  xmm4,xmm5
+    1298:	f3 0f 58 c4          	addss  xmm0,xmm4
+    129f:	f3 0f 59 e3          	mulss  xmm4,xmm3
+scalar_double multiply
+    1126:	f2 0f 59 04 01       	mulsd  xmm0,QWORD PTR [rcx+rax*1]
+    1166:	f2 0f 59 04 c1       	mulsd  xmm0,QWORD PTR [rcx+rax*8]
+scalar_double axpy
+    11ca:	f2 0f 59 c1          	mulsd  xmm0,xmm1
+    11ce:	f2 0f 58 04 01       	addsd  xmm0,QWORD PTR [rcx+rax*1]
+    1206:	f2 0f 59 c1          	mulsd  xmm0,xmm1
+    120a:	f2 0f 58 04 c1       	addsd  xmm0,QWORD PTR [rcx+rax*8]
+scalar_double stencil
+    1284:	f2 0f 59 c3          	mulsd  xmm0,xmm3
+    1290:	f2 0f 59 e5          	mulsd  xmm4,xmm5
+    129a:	f2 0f 58 c4          	addsd  xmm0,xmm4
+    12a2:	f2 0f 59 e3          	mulsd  xmm4,xmm3
+default_float multiply
+    1126:	f3 0f 59 04 01       	mulss  xmm0,DWORD PTR [rcx+rax*1]
+    1169:	0f 59 c2             	mulps  xmm0,xmm2
+    119b:	0f 59 c1             	mulps  xmm0,xmm1
+    11b6:	f3 0f 59 04 81       	mulss  xmm0,DWORD PTR [rcx+rax*4]
+default_float axpy
+    120a:	f3 0f 59 c1          	mulss  xmm0,xmm1
+    120e:	f3 0f 58 04 01       	addss  xmm0,DWORD PTR [rcx+rax*1]
+    1269:	0f 59 c1             	mulps  xmm0,xmm1
+    126c:	0f 58 c2             	addps  xmm0,xmm2
+default_float stencil
+    1349:	0f 59 c2             	mulps  xmm0,xmm2
+    134c:	0f 59 cb             	mulps  xmm1,xmm3
+    134f:	0f 58 c1             	addps  xmm0,xmm1
+    1357:	0f 59 ca             	mulps  xmm1,xmm2
+default_double multiply
+    1126:	f2 0f 59 04 01       	mulsd  xmm0,QWORD PTR [rcx+rax*1]
+    116b:	66 0f 59 c1          	mulpd  xmm0,xmm1
+    118c:	f2 41 0f 59 04 f9    	mulsd  xmm0,QWORD PTR [r9+rdi*8]
+default_double axpy
+    11ea:	f2 0f 59 c1          	mulsd  xmm0,xmm1
+    11ee:	f2 0f 58 04 01       	addsd  xmm0,QWORD PTR [rcx+rax*1]
+    124b:	66 0f 59 c1          	mulpd  xmm0,xmm1
+    124f:	66 0f 58 c2          	addpd  xmm0,xmm2
+default_double stencil
+    130a:	66 0f 59 cb          	mulpd  xmm1,xmm3
+    1314:	66 0f 59 c4          	mulpd  xmm0,xmm4
+    1318:	66 0f 58 c1          	addpd  xmm0,xmm1
+    1320:	66 0f 59 cb          	mulpd  xmm1,xmm3
+native_float multiply
+    1148:	c5 fa 59 04 01       	vmulss xmm0,xmm0,DWORD PTR [rcx+rax*1]
+    11a7:	62 f1 7c 48 59 04 07 	vmulps zmm0,zmm0,ZMMWORD PTR [rdi+rax*1]
+    11e4:	c5 fc 59 04 87       	vmulps ymm0,ymm0,YMMWORD PTR [rdi+rax*4]
+    1208:	c5 fa 59 04 81       	vmulss xmm0,xmm0,DWORD PTR [rcx+rax*4]
+native_float axpy
+    1320:	c5 f2 59 04 07       	vmulss xmm0,xmm1,DWORD PTR [rdi+rax*1]
+    1328:	c5 fa 58 04 01       	vaddss xmm0,xmm0,DWORD PTR [rcx+rax*1]
+    1380:	62 f1 74 48 59 04 07 	vmulps zmm0,zmm1,ZMMWORD PTR [rdi+rax*1]
+    1387:	62 f1 7c 48 58 04 01 	vaddps zmm0,zmm0,ZMMWORD PTR [rcx+rax*1]
+native_float stencil
+    1540:	62 f1 64 48 59 94 02 	vmulps zmm2,zmm3,ZMMWORD PTR [rdx+rax*1+0x4]
+    154b:	62 f1 74 48 59 04 02 	vmulps zmm0,zmm1,ZMMWORD PTR [rdx+rax*1]
+    1552:	62 f1 7c 48 58 c2    	vaddps zmm0,zmm0,zmm2
+    1558:	62 f1 74 48 59 94 02 	vmulps zmm2,zmm1,ZMMWORD PTR [rdx+rax*1+0x8]
+native_double multiply
+    1148:	c5 fb 59 04 01       	vmulsd xmm0,xmm0,QWORD PTR [rcx+rax*1]
+    11a7:	62 f1 fd 48 59 04 07 	vmulpd zmm0,zmm0,ZMMWORD PTR [rdi+rax*1]
+    11e4:	c5 fd 59 04 c7       	vmulpd ymm0,ymm0,YMMWORD PTR [rdi+rax*8]
+    1204:	c5 fb 59 04 c1       	vmulsd xmm0,xmm0,QWORD PTR [rcx+rax*8]
+native_double axpy
+    12a0:	c5 f3 59 04 07       	vmulsd xmm0,xmm1,QWORD PTR [rdi+rax*1]
+    12a8:	c5 fb 58 04 01       	vaddsd xmm0,xmm0,QWORD PTR [rcx+rax*1]
+    1300:	62 f1 f5 48 59 04 07 	vmulpd zmm0,zmm1,ZMMWORD PTR [rdi+rax*1]
+    1307:	62 f1 fd 48 58 04 01 	vaddpd zmm0,zmm0,ZMMWORD PTR [rcx+rax*1]
+native_double stencil
+    1440:	62 f1 e5 48 59 94 02 	vmulpd zmm2,zmm3,ZMMWORD PTR [rdx+rax*1+0x8]
+    144b:	62 f1 f5 48 59 04 02 	vmulpd zmm0,zmm1,ZMMWORD PTR [rdx+rax*1]
+    1452:	62 f1 fd 48 58 c2    	vaddpd zmm0,zmm0,zmm2
+    1458:	62 f1 f5 48 59 94 02 	vmulpd zmm2,zmm1,ZMMWORD PTR [rdx+rax*1+0x10]

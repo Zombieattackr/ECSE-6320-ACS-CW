@@ -1,0 +1,1 @@
+I expect each packed build to outperform scalar in small, unit-stride, cache-resident loops. For streaming arrays, data supply should compress that advantage. A one-element shift may cost extra split-line accesses. A three-element remainder should matter more in short loops. Wider strides should waste fetched bytes and float64 should process fewer elements per vector.
